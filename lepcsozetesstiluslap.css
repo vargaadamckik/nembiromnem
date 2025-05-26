@@ -30,3 +30,36 @@ body.lightmode #wc {
     margin: auto;
     align-items: center;
 }
+
+#up1, #up2, #up3, #up4 {
+    border: 1px white solid;
+}
+
+#ph {
+  border: 1px solid #ccc;
+  padding: 10px;
+  width: 350px;
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 8px;
+  text-align: center;
+}
+
+#upgrades {
+  display: flex;
+  margin-top: 40px;
+  gap: 69px;
+  flex-wrap: wrap;
+}
+
+#upgrades > div {
+  border: 1px solid #ccc;
+  padding: 10px;
+  width: 250px;
+  border-radius: 8px;
+}
+
+#palesz {
+    width: 5%;
+}
