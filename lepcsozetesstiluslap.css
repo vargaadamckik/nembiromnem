@@ -1,7 +1,18 @@
 body {
     text-align: center;
+    background-color: wheat;
+    color: black;
 }
 
+#szer, #szam {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+#wc, #bc {
+    width: 5%;
+}
+ 
 #starter {
     margin: auto;
     align-items: center;
