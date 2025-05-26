@@ -4,6 +4,7 @@ var count = parseInt(counter.innerHTML, 10);
 let ff = false;
 document.getElementById("auto1").style.display = "none";
 document.getElementById("bc").style.display = "none";
+kepcount = 0;
 
 function incrementalok() {
     if (!ff) {
@@ -12,5 +13,23 @@ function incrementalok() {
             counter.innerHTML = count;
         });
         ff = true;
+    }
+}
+
+function kepcsere() {
+    if (kepcount != 1) {
+        kepcount++;
+    }
+    else {
+        kepcount--;
+    }
+    const kepturn = document.getElementById("kepeses");
+    if (kepcount === 1) {
+        kepturn.classList.remove("darkmode");
+        kepturn.classList.add("lightmode");
+    }
+    else {
+        kepturn.classList.remove("lightmode");
+        kepturn.classList.add("darkmode");
     }
 }

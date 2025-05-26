@@ -1,7 +1,7 @@
 body {
     text-align: center;
-    background-color: wheat;
-    color: black;
+    background-color: black;
+    color: white;
 }
 
 #szer, #szam {
@@ -11,6 +11,19 @@ body {
 
 #wc, #bc {
     width: 5%;
+    position: fixed;
+    right: 10px;
+    top: 10px;
+}
+
+body.darkmode #bc {
+    background-color: black;
+    color: white;
+}
+
+body.lightmode #wc {
+    background-color: white;
+    color: black;
 }
  
 #starter {
