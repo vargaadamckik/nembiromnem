@@ -19,31 +19,32 @@
     </div>
     <h1 id="ph">Pálinka Fejlesztés shop</h1>
     <div id="upgrades">
-        <div id="up1" onclick="upgradek()">
+        <p id="nerf">Nerf: 100k Pálinka után csak 1.5x effect.</p>
+        <div id="up1" onclick="upgrade1()">
             <p>Upgrade 1</p>
             <p>Pálinka duplázó</p>
             <p>Duplán, mert úgy finomabb.</p>
             <p>Ár: <span id="arszam">50</span> Pálinka</p>
-            <p>Jelenlegi boost : <span>x0</span></p>
+            <p>Jelenlegi boost : x<span id="boost">0</span></p>
         </div>
         <br>
-        <div id="up2">
+        <div id="up2" onclick="upgrade2()">
             <p>Upgrade 2</p>
             <p>x1.05 Pálinka</p>
             <p>Később talán hasznos lesz.</p>
-            <p>Ár: <span id="arszam2">600</span> Pálinka</p>
+            <p>Ár: <span id="arszam2">2500</span> Pálinka</p>
             <p>Jelenlegi boost : <span>x0</span></p>
         </div>
         <br>
-        <div id="up3">
+        <div id="up3" onclick="upgrade3()">
             <p>Upgrade 3</p>
             <p>Pálinka saját magát boostolja.</p>
             <p>Nagy számok, kevés a biztosítás.</p>
-            <p>Ár: <span id="kszam">5000</span> Pálinka</p>
-            <p>Jelenlegi boost : <span>x0</span></p>
+            <p>Ár: <span id="kszam">50000</span> Pálinka</p>
+            <p>Jelenlegi boost : x<span id="boost3">0</span></p>
         </div>
         <br>
-        <div id="up4">
+        <div id="up4" onclick="upgrade4()">
             <p>Upgrade 4</p>
             <p>Kevesebb kattintás cooldown</p>
             <p>Gyorsabb Pálinka, erősebb hatás.</p>
