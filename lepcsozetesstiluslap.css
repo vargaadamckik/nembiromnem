@@ -31,6 +31,10 @@ body.lightmode #wc {
     align-items: center;
 }
 
+#starter .ac {
+    filter: saturate(1000);
+}
+
 #up1, #up2, #up3, #up4 {
     border: 1px white solid;
 }
@@ -62,4 +66,8 @@ body.lightmode #wc {
 
 #palesz {
     width: 5%;
+}
+
+#meme {
+    border-radius: 100%;
 }

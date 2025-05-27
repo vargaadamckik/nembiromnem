@@ -13,6 +13,12 @@ function incrementalok() {
             counter.innerHTML = count;
         });
         ff = true;
+        img.addEventListener("mouseup", function() {
+            img.classList.remove("ac");
+        })
+        img.addEventListener("mousedown", function() {
+            img.classList.add("ac");
+        })
     }
 }
 
