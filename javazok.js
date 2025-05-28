@@ -4,7 +4,7 @@ var count = parseInt(counter.innerHTML, 10);
 let ff = false;
 let up3 = false;
 let b3 = document.getElementById("boost3");
-const matek = Math.floor((Math.round(Math.log10(count) * 2) * (upbg / 1.5)));
+var matek = Math.floor((Math.round(Math.log10(count) * 2) * (upbg / 1.5)));
 var changecount = 0;
 var smallcountbuff = 1;
 var upbg = 0;
@@ -28,7 +28,7 @@ function incrementalok() {
                 count++;
             } else {              
                 if (up3) {
-                    const matek = Math.floor((Math.round(Math.log10(count) * 2) / (upbg / 5)));
+                    matek = Math.floor((Math.round(Math.log10(count) * 2) * (upbg / 1.5)));
                     count += (changecount * matek) * smallcountbuff;
                     b3.innerText = matek;
                 }
