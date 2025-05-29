@@ -3,10 +3,17 @@ var counter = document.getElementById("szam");
 var count = parseInt(counter.innerHTML, 10);
 let ff = false;
 let up3 = false;
+let arszam = document.getElementById("arszam");
+let booster = document.getElementById("boost");
+let arszam2 = document.getElementById("arszam2");
+let boost2 = document.getElementById("boost2");
+let kszam = document.getElementById("kszam");
+let kszam2 = document.getElementById("karszam2");
+let debuff = document.getElementById("debuff");
 let nerftime = false;
 let jagerreset = false;
 let b3 = document.getElementById("boost3");
-var matek = Math.floor((Math.round(Math.log10(count) * 2) * (upbg / 15)));
+var matek = Math.floor((Math.round(Math.log10(count) * 2) * (upbg / 20)));
 var changecount = 0;
 var smallcountbuff = 1;
 var upbg = 0;
@@ -17,6 +24,7 @@ document.getElementById("bc").style.display = "none";
 document.getElementById("nerf-message").style.display = "none";
 document.getElementById("ides").style.display = "none";
 document.getElementById("ides2").style.display = "none";
+document.getElementById("test").style.display = "none";
 kepcount = 0;
 
 function incrementalok() {
@@ -34,7 +42,7 @@ function incrementalok() {
                 count++;
             } else {              
                 if (up3) {
-                    matek = Math.floor((Math.round(Math.log10(count) * 2) * (upbg / 15)));
+                    matek = Math.floor((Math.round(Math.log10(count) * 2) * (upbg / 20)));
                     count += (changecount * matek) * smallcountbuff;
                     b3.innerText = matek;
                 }
@@ -42,8 +50,13 @@ function incrementalok() {
                     count += changecount * smallcountbuff;
                 }
             }
-            counter.innerHTML = Math.floor(Math.round(count));
-            if (count >= 10000000) {
+            if (count >= 1000000) {
+                counter.innerHTML = (count / 1000000).toFixed(1) + " M";
+            } 
+            else {
+                counter.innerHTML = Math.floor(Math.round(count));
+            }
+            if (count >= 50000000) {
                 jagerreset = true;
                 document.getElementById("ides").style.display = "block";
                 document.getElementById("ides2").style.display = "block";
@@ -51,6 +64,26 @@ function incrementalok() {
         });
         ff = true;
         designolok()       
+    }
+}
+
+function jagered() {
+    if (jagerreset) {
+        count = 0;
+        upbg = 0;
+        changecount = 0;
+        boost2.innerText, booster.innerText, b3.innerText = "0"
+        debuff.innerText = "0.2"
+        arszam.innerText = 20;
+        arszam2.innerText = 1500;
+        kszam.innerText = 20000;
+        kszam2.innerText = 10000;
+        smallcountbuff = 1;
+        up3 = false;
+        kaido = 20;
+        kattosido = 200;
+        document.getElementById("test").style.display = "block";
+        document.getElementById("nerf-message").style.display = "none";
     }
 }
 
@@ -83,12 +116,10 @@ function kepcsere() {
 }
 
 function upgrade1() {
-    let arszam = document.getElementById("arszam");
-    let booster = document.getElementById("boost");
     if (count >= arszam.innerText)  {
         count -= arszam.innerText;
         upbg += 1;
-        if (count <= 100000 && !nerftime) {           
+        if (count <= 100000 && arszam.innerText <= 100000) {           
             if (changecount == 0) {
             changecount += 2;
             }
@@ -96,7 +127,7 @@ function upgrade1() {
                 changecount *= 2;
             }
         }
-        else {
+        if (arszam.innerText >= 100000) {
             changecount *= 1.5;
             document.getElementById("nerf-message").style.display = "block";
         } 
@@ -106,19 +137,16 @@ function upgrade1() {
 }
 
 function upgrade2() {
-    let arszam2 = document.getElementById("arszam2");
-    let boost2 = document.getElementById("boost2");
     if (count >= arszam2.innerText) {
         count -= arszam2.innerText;
         upbg += 1;
         arszam2.innerText = Math.floor(Math.round(arszam2.innerText * 2));
         smallcountbuff *= 1.1;      
     }
-    boost2.innerText = smallcountbuff;
+    boost2.innerText = smallcountbuff.toFixed(2);
 }
 
 function upgrade3() {
-    let kszam = document.getElementById("kszam");
     if (count >= kszam.innerText)  {
         upbg += 1;
         count -= kszam.innerText;
@@ -128,24 +156,22 @@ function upgrade3() {
 }
 
 function upgrade4() {
-    let kszam2 = document.getElementById("karszam2");
-    let debuff = document.getElementById("debuff");
-    if (count >= kszam2.innerText)  {
-        upbg += 1;
-        count -= kszam2.innerText;
-        Math.floor(Math.round(kszam2.innerText *= 1.5));
-        if (kattosido > 0) {
-            kattosido -= 10;
-            debuff.innerText = "0." + kaido;
-            kaido -= 1;
-            if (kattosido < 10) {
+    if (count >= kszam2.innerText)  {        
+        if (kaido >= 1) {
+            upbg += 1;
+            count -= kszam2.innerText;
+            kszam2.innerText = Math.floor(Math.round(kszam2.innerText *= 1.5));
+            if (kattosido > 100) {
+                kattosido -= 10;
+                debuff.innerText = "0." + kaido;
+                kaido -= 1;
+            }
+            else {
                 kattosido -= 10;
                 debuff.innerText = "0.0" + kaido;
                 kaido -= 1;
             }
         }
-        else {
-            debuff.innerText = "0";
-        }          
+        
     }
 }
