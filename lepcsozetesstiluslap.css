@@ -75,6 +75,22 @@ body.lightmode #wc {
   border-radius: 8px;
 }
 
+#vmiupgrades {
+  display: flex;
+  margin-top: 40px;
+  gap: 69px;
+  flex-wrap: wrap;
+}
+
+#vmiupgrades > div {
+  border: 3px solid rgb(0, 183, 255);
+  background-color: rgba(255, 255, 255, 0.636);
+  padding: 10px;
+  width: 250px;
+  color: black;
+  border-radius: 8px;
+}
+
 #palesz {
     width: 5%;
 }
@@ -107,4 +123,47 @@ body.lightmode #wc {
 .ph2 + p:hover {
     background-color: #e0e0e0;
     transform: scale(1.03);
+}
+
+#game {
+    border-collapse: collapse;
+    margin: 20px auto;
+    display: table;
+}
+
+#game table {
+    margin: 0 auto;   
+    border-collapse: collapse;
+}
+
+#game td {
+    width: 60px;
+    height: 60px;
+    background-color: white;
+    border: 1px solid #000;
+    cursor: pointer;
+    text-align: center;
+    vertical-align: middle;
+}
+
+#game td.zold {
+    background-color: green;
+}
+
+#mem {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+#test {
+    background-color: white;
+    width: 290px;
+    color: black;
+    font-size: 20px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.left-part {
+  margin-right: 30px; 
 }

@@ -19,13 +19,20 @@ var smallcountbuff = 1;
 var upbg = 0;
 var kattosido = 200;
 var kaido = 19;
+var memorypoint = 0;
+const meret = 5;
+const doboz = document.getElementById('game');
+let tabla = [];
+let aktualis = null;
+let varjaAKattintast = false;
 document.getElementById("auto1").style.display = "none";
 document.getElementById("bc").style.display = "none";
 document.getElementById("nerf-message").style.display = "none";
 document.getElementById("ides").style.display = "none";
 document.getElementById("ides2").style.display = "none";
 document.getElementById("test").style.display = "none";
-kepcount = 0;
+document.getElementById("mem").style.display = "none";
+document.getElementById("vmiupgrades").style.display = "none";
 
 function incrementalok() {
     if (!ff) {
@@ -84,6 +91,9 @@ function jagered() {
         kattosido = 200;
         document.getElementById("test").style.display = "block";
         document.getElementById("nerf-message").style.display = "none";
+        document.getElementById("mem").style.display = "block"
+        document.getElementById("vmiupgrades").style.display = "block";
+        jatek();
     }
 }
 
@@ -174,4 +184,74 @@ function upgrade4() {
         }
         
     }
+}
+
+function tablageneralas() {
+  doboz.innerHTML = '';
+  tabla = [];
+  for (let i = 0; i < meret; i++) {
+    const tr = document.createElement('tr');
+    const sorLista = [];
+    for (let j = 0; j < meret; j++) {
+      const td = document.createElement('td');
+      td.dataset.sor = i;
+      td.dataset.oszlop = j;
+      td.style.width = '50px';
+      td.style.height = '50px';
+      td.style.border = '1px solid black';
+      td.style.cursor = 'pointer';
+      td.addEventListener('click', () => {
+        if (varjaAKattintast) kattintas(td);
+      });
+      sorLista.push(td);
+      tr.appendChild(td);
+    }
+    tabla.push(sorLista);
+    doboz.appendChild(tr);
+  }
+}
+
+function ujRandomTile() {
+  let sor, oszlop;
+  do {
+    sor = Math.floor(Math.random() * meret);
+    oszlop = Math.floor(Math.random() * meret);
+  } while (aktualis && tabla[sor][oszlop] === aktualis);
+  return tabla[sor][oszlop];
+}
+
+function mutatTile() {
+  if (aktualis) {
+    aktualis.classList.remove('zold', 'piros');
+  }
+  aktualis = ujRandomTile();
+  aktualis.classList.add('zold');
+  varjaAKattintast = true;
+}
+
+function kattintas(td) {
+  varjaAKattintast = false;
+  if (td === aktualis) {
+    aktualis.classList.remove('zold');
+    memorypoint++;
+    document.getElementById("mempont").innerText = memorypoint;
+    setTimeout(() => {
+      mutatTile();
+    }, 500);
+  } else {
+    td.classList.add('piros');
+    setTimeout(() => {
+      td.classList.remove('piros');
+      mutatTile();
+    }, 700);
+  }
+}
+
+function jatek() {
+  tablageneralas();
+  mutatTile();
+}
+
+function vup1() {
+    let vvar = document.getElementById("varszam");
 }
