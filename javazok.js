@@ -12,9 +12,12 @@ let kszam2 = document.getElementById("karszam2");
 let debuff = document.getElementById("debuff");
 let nerftime = false;
 let jagerreset = false;
+let boostyay = 1;
+let memoboost = 1;
+let memobuff = false;
 let b3 = document.getElementById("boost3");
 var matek = Math.floor((Math.round(Math.log10(count) * 2) * (upbg / 20)));
-var changecount = 0;
+var changecount = 1;
 var smallcountbuff = 1;
 var upbg = 0;
 var kattosido = 200;
@@ -33,6 +36,9 @@ document.getElementById("ides2").style.display = "none";
 document.getElementById("test").style.display = "none";
 document.getElementById("mem").style.display = "none";
 document.getElementById("vmiupgrades").style.display = "none";
+document.getElementById("end").style.display = "none";
+document.getElementById("final").style.display = "none";
+
 
 function incrementalok() {
     if (!ff) {
@@ -46,15 +52,15 @@ function incrementalok() {
             }, kattosido);
 
             if (changecount == 0) {
-                count++;
+                count += 1 * boostyay;
             } else {              
                 if (up3) {
                     matek = Math.floor((Math.round(Math.log10(count) * 2) * (upbg / 20)));
-                    count += (changecount * matek) * smallcountbuff;
+                    count += ((changecount * matek) * smallcountbuff) * boostyay;
                     b3.innerText = matek;
                 }
                 else {
-                    count += changecount * smallcountbuff;
+                    count += (changecount * smallcountbuff) * boostyay;
                 }
             }
             if (count >= 1000000) {
@@ -93,6 +99,7 @@ function jagered() {
         document.getElementById("nerf-message").style.display = "none";
         document.getElementById("mem").style.display = "block"
         document.getElementById("vmiupgrades").style.display = "block";
+        document.getElementById("final").style.display = "block";
         jatek();
     }
 }
@@ -233,8 +240,14 @@ function kattintas(td) {
   varjaAKattintast = false;
   if (td === aktualis) {
     aktualis.classList.remove('zold');
-    memorypoint++;
-    document.getElementById("mempont").innerText = memorypoint;
+    if (!memobuff) {
+        memorypoint++;
+        document.getElementById("mempont").innerText = memorypoint;
+    }
+    else {
+        memorypoint += memoboost;
+        document.getElementById("mempont").innerText = memorypoint;
+    }
     setTimeout(() => {
       mutatTile();
     }, 500);
@@ -252,6 +265,37 @@ function jatek() {
   mutatTile();
 }
 
-function vup1() {
+function vupgrade1() {
     let vvar = document.getElementById("varszam");
+    let vboost = document.getElementById("vboost");
+    if (memorypoint >= vvar.innerText) {
+        memorypoint -= vvar.innerText;
+        upbg += 1;
+        vvar.innerText = Math.floor(Math.round(vvar.innerText * 10));
+        boostyay *= 2
+        vboost.innerText = boostyay;
+    }
+}
+
+function vupgrade2() {
+    let vvar2 = document.getElementById("varszam2");
+    let vboost2 = document.getElementById("vboost2");
+    if (memorypoint >= vvar2.innerText) {
+        memorypoint -= vvar2.innerText;
+        upbg += 1;
+        memobuff = true;
+        vvar2.innerText = Math.floor(Math.round(vvar2.innerText * 4));
+        memoboost *= 2
+        vboost2.innerText = memoboost;
+    }
+}
+
+function end() {
+    let far = document.getElementById("finalar");
+    let fpal = document.getElementById("finalpal");
+    if (count >= fpal.innerText * 1000000 && memorypoint >= far.innerText) {
+        count -= fpal.innerText * 1000000;
+        memorypoint -= far.innerText;
+        document.getElementById("end").style.display = "block";
+    }
 }
